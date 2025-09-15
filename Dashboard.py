@@ -1,13 +1,32 @@
 import streamlit as st
+import pandas as pd
+import numpy as np
+from numpy.random import default_rng as rng
 
-st.set_page_config(
-    page_title="PROHI Dashboard",
-    page_icon="👋",
-)
+page = st.sidebar.selectbox("Choose a page 👇", ["Dashboard", "About"])
 
-# Sidebar configuration
-st.sidebar.image("./assets/project-logo.jpg",)
-st.sidebar.success("Select a tab above.")
+if page == "Dashboard":
+    st.write("# Welcome to the Season Prediction Dashboard!")
+    st.image("https://wallpapercave.com/wp/wp4184896.jpg", width=800)
+
+    df = np.random.randn(100)
+    df = pd.DataFrame({"Temperature (°C)": rng(0).integers(-25, 40, size=100),
+                       "Precipitation (mm)": rng(0).integers(0, 110, size=100),
+                       "UV Index": rng(0).integers(0, 14, size=100)
+                       })
+    
+    st.subheader("Synthetic Data:")
+    st.dataframe(df)
+    
+    st.header("Enter Input Features:")
+    temp = st.slider("Temperature (°C)", min_value=-25, max_value=40, value=25)
+    prec = st.slider("Precipitation (mm)", min_value=0, max_value=110, value=40)
+    uv = st.slider("UV Index", min_value=0, max_value=14, value=3)
+
+    st.button(label="Predict", icon="⁉️")
+
+    st.subheader("Data Chart:")
+    st.line_chart(df)
 
 # # Page information
 
