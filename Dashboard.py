@@ -7,7 +7,6 @@ page = st.sidebar.selectbox("Choose a page 👇", ["Dashboard", "About"])
 
 if page == "Dashboard":
     st.write("# Welcome to the Season Prediction Dashboard!")
-    #st.image("https://wallpapercave.com/wp/wp4184896.jpg", width=800)
     st.image("assets/image.jpg", width=800)
 
     df = np.random.randn(100)
